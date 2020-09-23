@@ -12,4 +12,14 @@ class Pantry
   def stock_check(ingredient)
     @stock[ingredient]
   end
+
+  def enough_ingredients_for?(recipe)
+    recipe.ingredients_required.select do |ingredient, quantity|
+      if @stock.values.join.to_i >= quantity
+        return true
+      else
+        false
+      end
+    end
+  end
 end
